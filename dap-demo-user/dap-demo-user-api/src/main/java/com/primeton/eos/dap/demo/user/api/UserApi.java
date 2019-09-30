@@ -50,31 +50,30 @@ import io.swagger.annotations.ApiOperation;
  */
 @Api("用户API")
 @FeignClient(name = "${user-api-provider:DEMO-APP-USER}")
-@RequestMapping(value = API_PATH_PREFIX + "/users", consumes = { APPLICATION_JSON_UTF8_VALUE }, produces = { APPLICATION_JSON_UTF8_VALUE })
 public interface UserApi {
 
     @ApiOperation("新增")
-    @RequestMapping(method = POST, consumes = { APPLICATION_JSON_UTF8_VALUE }, produces = { APPLICATION_JSON_UTF8_VALUE })
+    @RequestMapping(method = POST, value = API_PATH_PREFIX + "/users", consumes = { APPLICATION_JSON_UTF8_VALUE }, produces = { APPLICATION_JSON_UTF8_VALUE })
     public User create(@Validated({ ValidationGroups.Create.class }) @RequestBody User user);
 
     @ApiOperation("更新")
-    @RequestMapping(method = PUT, consumes = { APPLICATION_JSON_UTF8_VALUE }, produces = { APPLICATION_JSON_UTF8_VALUE })
+    @RequestMapping(method = PUT, value = API_PATH_PREFIX + "/users", consumes = { APPLICATION_JSON_UTF8_VALUE }, produces = { APPLICATION_JSON_UTF8_VALUE })
     public User update(@Validated({ ValidationGroups.Update.class }) @RequestBody User user);
 
     @ApiOperation("按主键删除")
-    @RequestMapping(value = "/{id}", method = DELETE, consumes = ALL_VALUE)
-    public void deleteById(@PathVariable(name = "id") String id);
+    @RequestMapping(method = DELETE, value = API_PATH_PREFIX + "/users/{userId}", consumes = ALL_VALUE)
+    public void deleteById(@PathVariable(name = "userId") String userId);
 
     @ApiOperation("按主键查询")
-    @RequestMapping(value = "/{id}", method = GET, consumes = ALL_VALUE)
-    public User findById(@PathVariable(name = "id") String id);
+    @RequestMapping(method = GET, value = API_PATH_PREFIX + "/users/{userId}", consumes = ALL_VALUE)
+    public User findById(@PathVariable(name = "userId") String userId);
 
     @ApiOperation("按条件全部查询")
-    @RequestMapping(value = "/" + PATH_QUERY_BY_CRITERIA, method = GET, consumes = ALL_VALUE)
+    @RequestMapping(method = GET, value = API_PATH_PREFIX + "/users/" + PATH_QUERY_BY_CRITERIA, consumes = ALL_VALUE)
     public List<User> findAll(UserCriteria criteria, @SortDefault Sort sort);
 
     @ApiOperation("按条件分页查询")
-    @RequestMapping(value = "/" + PATH_PAGE_QUERY_BY_CRITERIA, method = GET, consumes = ALL_VALUE)
+    @RequestMapping(method = GET, value = API_PATH_PREFIX + "/users/" + PATH_PAGE_QUERY_BY_CRITERIA, consumes = ALL_VALUE)
     public Page<User> pagingAll(UserCriteria criteria, @PageableDefault Pageable pageable);
 
 }

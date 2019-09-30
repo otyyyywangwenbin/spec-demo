@@ -22,15 +22,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.primeton.eos.dap.demo.user.api.UserApi;
 import com.primeton.eos.dap.demo.user.api.model.User;
 import com.primeton.eos.dap.demo.user.api.model.UserCriteria;
-import com.primeton.eos.dap.demo.user.api.util.ValidationGroups;
 import com.primeton.eos.dap.demo.user.impl.service.UserService;
 
 /**
@@ -44,10 +40,6 @@ public class UserController implements UserApi {
     @Autowired
     private UserService userSvc;
 
-    protected UserService getSvc() {
-        return userSvc;
-    }
-
     protected com.primeton.eos.dap.demo.user.impl.model.User toPO(User vo) {
         com.primeton.eos.dap.demo.user.impl.model.User po = new com.primeton.eos.dap.demo.user.impl.model.User();
         BeanUtils.copyProperties(vo, po);
@@ -60,30 +52,30 @@ public class UserController implements UserApi {
         return vo;
     }
 
-    public User create(@Validated({ ValidationGroups.Create.class }) @RequestBody User user) {
+    public User create(User user) {
         com.primeton.eos.dap.demo.user.impl.model.User po = toPO(user);
-        po = getSvc().create(po);
+        po = userSvc.create(po);
         return toVO(po);
     }
 
-    public User update(@Validated({ ValidationGroups.Update.class }) @RequestBody User user) {
+    public User update(User user) {
         com.primeton.eos.dap.demo.user.impl.model.User po = toPO(user);
-        po = getSvc().update(po);
+        po = userSvc.update(po);
         return toVO(po);
     }
 
-    public void deleteById(@PathVariable(name = "id") String id) {
-        getSvc().deleteById(id);
+    public void deleteById(String userId) {
+        userSvc.deleteById(userId);
     }
 
-    public User findById(@PathVariable(name = "id") String id) {
-        com.primeton.eos.dap.demo.user.impl.model.User po = getSvc().findById(id);
+    public User findById(String userId) {
+        com.primeton.eos.dap.demo.user.impl.model.User po = userSvc.findById(userId);
         return toVO(po);
     }
 
     public List<User> findAll(UserCriteria criteria, Sort sort) {
         List<User> vos = new ArrayList<User>();
-        List<com.primeton.eos.dap.demo.user.impl.model.User> pos = getSvc().findAll(criteria, sort);
+        List<com.primeton.eos.dap.demo.user.impl.model.User> pos = userSvc.findAll(criteria, sort);
         for (com.primeton.eos.dap.demo.user.impl.model.User po : pos) {
             vos.add(toVO(po));
         }
@@ -92,7 +84,7 @@ public class UserController implements UserApi {
 
     public Page<User> pagingAll(UserCriteria criteria, Pageable pageable) {
         List<User> vos = new ArrayList<User>();
-        Page<com.primeton.eos.dap.demo.user.impl.model.User> page = getSvc().findAll(criteria, pageable);
+        Page<com.primeton.eos.dap.demo.user.impl.model.User> page = userSvc.findAll(criteria, pageable);
         for (com.primeton.eos.dap.demo.user.impl.model.User po : page.getContent()) {
             vos.add(toVO(po));
         }

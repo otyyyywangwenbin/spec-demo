@@ -12,15 +12,7 @@
     <dependencies>
         <dependency>
             <groupId>com.primeton.eos</groupId>
-            <artifactId>dap-demo-user-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.primeton.eos</groupId>
             <artifactId>dap-demo-user-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.primeton.eos</groupId>
-            <artifactId>eos-dap-sdk-starter</artifactId>
         </dependency>
     </dependencies>
 </project>
