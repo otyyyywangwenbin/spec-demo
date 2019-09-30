@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.primeton.eos</groupId>
+        <artifactId>eos-dap-pom</artifactId>
+        <version>5.0.0</version>
+    </parent>
+    <artifactId>dap-demo-order</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+
+    <properties>
+        <dap-demo-order.version>1.0.0-SNAPSHOT</dap-demo-order.version>
+    </properties>
+
+    <modules>
+        <module>dap-demo-order-common</module>
+        <module>dap-demo-order-impl</module>
+        <module>dap-demo-order-boot</module>
+    </modules>
+
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.primeton.eos</groupId>
+                <artifactId>eos-dap-sdk-dependencies</artifactId>
+                <version>5.0.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.primeton.eos</groupId>
+                <artifactId>dap-demo-order-common</artifactId>
+                <version>${dap-demo-order.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.primeton.eos</groupId>
+                <artifactId>dap-demo-order-impl</artifactId>
+                <version>${dap-demo-order.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
