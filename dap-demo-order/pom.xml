@@ -14,6 +14,7 @@
 
     <properties>
         <dap-demo-order.version>1.0.0-SNAPSHOT</dap-demo-order.version>
+        <dap-demo-user.version>1.0.0-SNAPSHOT</dap-demo-user.version>
     </properties>
 
     <modules>
@@ -44,6 +45,12 @@
                 <groupId>com.primeton.eos</groupId>
                 <artifactId>dap-demo-order-impl</artifactId>
                 <version>${dap-demo-order.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.primeton.eos</groupId>
+                <artifactId>dap-demo-user-api</artifactId>
+                <version>${dap-demo-user.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

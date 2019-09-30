@@ -29,7 +29,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.primeton.eos.dap.demo.user.api.model.UserCriteria;
-import com.primeton.eos.dap.demo.user.common.dao.CommonJpaRepository;
 import com.primeton.eos.dap.demo.user.common.service.BasePersistentModelService;
 import com.primeton.eos.dap.demo.user.impl.dao.UserJpaRepository;
 import com.primeton.eos.dap.demo.user.impl.model.User;
@@ -46,7 +45,7 @@ public class UserService extends BasePersistentModelService<User> {
     @Autowired
     private UserJpaRepository userRepo;
 
-    protected CommonJpaRepository<User, String> getRepo() {
+    protected UserJpaRepository getRepo() {
         return userRepo;
     }
 
