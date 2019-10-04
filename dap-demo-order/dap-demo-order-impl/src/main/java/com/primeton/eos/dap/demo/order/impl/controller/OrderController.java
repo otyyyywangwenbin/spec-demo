@@ -25,6 +25,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +38,9 @@ import com.primeton.eos.dap.demo.order.common.util.ValidationGroups;
 import com.primeton.eos.dap.demo.order.impl.model.Order;
 import com.primeton.eos.dap.demo.order.impl.model.OrderCriteria;
 import com.primeton.eos.dap.demo.order.impl.service.OrderService;
+import com.primeton.eos.dap.demo.user.api.UserApi;
+import com.primeton.eos.dap.demo.user.api.model.User;
+import com.primeton.eos.dap.demo.user.api.model.UserCriteria;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -48,6 +54,16 @@ import io.swagger.annotations.ApiOperation;
 public class OrderController {
     @Autowired
     private OrderService orderSvc;
+
+    @Autowired
+    private UserApi userApi;
+
+    @RequestMapping(method = GET, value = "/test", consumes = ALL_VALUE)
+    public Page<User> test() {
+        UserCriteria criteria = new UserCriteria();
+        criteria.setAge(26);
+        return userApi.pagingAll(criteria, PageRequest.of(0, 2, Direction.DESC, "createdDate"));
+    }
 
     @ApiOperation("新增")
     @RequestMapping(method = POST, consumes = { APPLICATION_JSON_UTF8_VALUE }, produces = { APPLICATION_JSON_UTF8_VALUE })

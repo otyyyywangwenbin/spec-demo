@@ -24,6 +24,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.groups.ConvertGroup;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.primeton.eos.dap.demo.order.common.model.BasePersistentModel;
@@ -50,6 +52,9 @@ public class Order extends BasePersistentModel {
     @JsonIgnore
     private String userId;
 
+    @NotNull(groups = { ValidationGroups.Create.class, ValidationGroups.Update.class })
+    @ConvertGroup(from = ValidationGroups.Create.class, to = ValidationGroups.Association.class)
+    @ConvertGroup(from = ValidationGroups.Update.class, to = ValidationGroups.Association.class)
     @Transient
     private User user;
 

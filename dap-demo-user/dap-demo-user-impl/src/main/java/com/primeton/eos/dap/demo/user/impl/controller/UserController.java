@@ -40,28 +40,28 @@ public class UserController implements UserApi {
     @Autowired
     private UserService userSvc;
 
-    protected com.primeton.eos.dap.demo.user.impl.model.User toPO(User vo) {
-        com.primeton.eos.dap.demo.user.impl.model.User po = new com.primeton.eos.dap.demo.user.impl.model.User();
-        BeanUtils.copyProperties(vo, po);
-        return po;
+    protected com.primeton.eos.dap.demo.user.impl.model.User toBO(User vo) {
+        com.primeton.eos.dap.demo.user.impl.model.User bo = new com.primeton.eos.dap.demo.user.impl.model.User();
+        BeanUtils.copyProperties(vo, bo);
+        return bo;
     }
 
-    protected User toVO(com.primeton.eos.dap.demo.user.impl.model.User po) {
+    protected User toVO(com.primeton.eos.dap.demo.user.impl.model.User bo) {
         User vo = new User();
-        BeanUtils.copyProperties(po, vo);
+        BeanUtils.copyProperties(bo, vo);
         return vo;
     }
 
     public User create(User user) {
-        com.primeton.eos.dap.demo.user.impl.model.User po = toPO(user);
-        po = userSvc.create(po);
-        return toVO(po);
+        com.primeton.eos.dap.demo.user.impl.model.User bo = toBO(user);
+        bo = userSvc.create(bo);
+        return toVO(bo);
     }
 
     public User update(User user) {
-        com.primeton.eos.dap.demo.user.impl.model.User po = toPO(user);
-        po = userSvc.update(po);
-        return toVO(po);
+        com.primeton.eos.dap.demo.user.impl.model.User bo = toBO(user);
+        bo = userSvc.update(bo);
+        return toVO(bo);
     }
 
     public void deleteById(String userId) {
@@ -69,15 +69,15 @@ public class UserController implements UserApi {
     }
 
     public User findById(String userId) {
-        com.primeton.eos.dap.demo.user.impl.model.User po = userSvc.findById(userId);
-        return toVO(po);
+        com.primeton.eos.dap.demo.user.impl.model.User bo = userSvc.findById(userId);
+        return toVO(bo);
     }
 
     public List<User> findAll(UserCriteria criteria, Sort sort) {
         List<User> vos = new ArrayList<User>();
-        List<com.primeton.eos.dap.demo.user.impl.model.User> pos = userSvc.findAll(criteria, sort);
-        for (com.primeton.eos.dap.demo.user.impl.model.User po : pos) {
-            vos.add(toVO(po));
+        List<com.primeton.eos.dap.demo.user.impl.model.User> bos = userSvc.findAll(criteria, sort);
+        for (com.primeton.eos.dap.demo.user.impl.model.User bo : bos) {
+            vos.add(toVO(bo));
         }
         return vos;
     }
@@ -85,10 +85,10 @@ public class UserController implements UserApi {
     public Page<User> pagingAll(UserCriteria criteria, Pageable pageable) {
         List<User> vos = new ArrayList<User>();
         Page<com.primeton.eos.dap.demo.user.impl.model.User> page = userSvc.findAll(criteria, pageable);
-        for (com.primeton.eos.dap.demo.user.impl.model.User po : page.getContent()) {
-            vos.add(toVO(po));
+        for (com.primeton.eos.dap.demo.user.impl.model.User bo : page.getContent()) {
+            vos.add(toVO(bo));
         }
-        return new PageImpl<User>(vos, pageable, page.getTotalElements());
+        return new PageImpl<User>(vos, page.getPageable(), page.getTotalElements());
     }
 
 }

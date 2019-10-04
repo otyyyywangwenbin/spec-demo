@@ -44,7 +44,7 @@ import io.swagger.annotations.ApiOperation;
  * @author wangwb (mailto:wangwb@primeton.com)
  */
 @RestController
-@RequestMapping(value = API_PATH_PREFIX + "/orders", consumes = { APPLICATION_JSON_UTF8_VALUE }, produces = { APPLICATION_JSON_UTF8_VALUE })
+@RequestMapping(value = API_PATH_PREFIX + "/products", consumes = { APPLICATION_JSON_UTF8_VALUE }, produces = { APPLICATION_JSON_UTF8_VALUE })
 public class ProductController {
     @Autowired
     private OrderService orderSvc;

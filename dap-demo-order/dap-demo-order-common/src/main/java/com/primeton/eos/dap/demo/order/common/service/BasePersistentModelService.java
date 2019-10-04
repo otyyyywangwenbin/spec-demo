@@ -9,7 +9,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 
 import com.primeton.eos.dap.demo.order.common.model.BasePersistentModel;
-import com.primeton.eos.dap.demo.user.common.model.BasePersistentModel_;
+import com.primeton.eos.dap.demo.order.common.model.BasePersistentModel_;
+
 
 /**
  * TODO 此处填写 class 信息

@@ -15,7 +15,6 @@ package com.primeton.eos.dap.demo.user.api;
 
 import static com.primeton.eos.dap.demo.user.api.util.UserApiConstants.API_PATH_PREFIX;
 import static com.primeton.eos.dap.demo.user.api.util.UserApiConstants.PATH_PAGE_QUERY_BY_CRITERIA;
-import static com.primeton.eos.dap.demo.user.api.util.UserApiConstants.PATH_QUERY_BY_CRITERIA;
 import static org.springframework.http.MediaType.ALL_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
@@ -23,14 +22,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
-import java.util.List;
-
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.data.web.SortDefault;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -68,13 +64,9 @@ public interface UserApi {
     @RequestMapping(method = GET, value = API_PATH_PREFIX + "/users/{userId}", consumes = ALL_VALUE)
     public User findById(@PathVariable(name = "userId") String userId);
 
-    @ApiOperation("按条件全部查询")
-    @RequestMapping(method = GET, value = API_PATH_PREFIX + "/users/" + PATH_QUERY_BY_CRITERIA, consumes = ALL_VALUE)
-    public List<User> findAll(UserCriteria criteria, @SortDefault Sort sort);
-
     @ApiOperation("按条件分页查询")
     @RequestMapping(method = GET, value = API_PATH_PREFIX + "/users/" + PATH_PAGE_QUERY_BY_CRITERIA, consumes = ALL_VALUE)
-    public Page<User> pagingAll(UserCriteria criteria, @PageableDefault Pageable pageable);
+    public Page<User> pagingAll(@SpringQueryMap UserCriteria criteria, @PageableDefault Pageable pageable);
 
 }
 

@@ -9,6 +9,7 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+import com.primeton.eos.dap.demo.user.api.UserApi;
 import com.primeton.eos.dap.sdk.api.bizflow.EnableSDKBizflows;
 
 /**
@@ -16,7 +17,7 @@ import com.primeton.eos.dap.sdk.api.bizflow.EnableSDKBizflows;
  *
  */
 @SpringBootApplication
-@EnableFeignClients
+@EnableFeignClients(clients = { UserApi.class })
 @EnableCircuitBreaker
 @EnableDiscoveryClient
 @EnableSDKBizflows
