@@ -39,4 +39,11 @@ public class CommonConfiguration {
         module.disable(Hibernate5Module.Feature.USE_TRANSIENT_ANNOTATION);
         return module;
     }
+
+    @Bean
+    public Module pageJacksonModule() {
+        // Feign 和 RestTemplate 都能用
+        PageJacksonModule module = new PageJacksonModule();
+        return module;
+    }
 }

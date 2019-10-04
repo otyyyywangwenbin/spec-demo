@@ -11,7 +11,7 @@
  * Created on Oct 4, 2019
  *******************************************************************************/
 
-package com.primeton.eos.dap.demo.order.common.config.feign;
+package com.primeton.eos.dap.demo.order.common.config;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -63,13 +63,12 @@ public class FeignClientConfiguration {
 
                 if (pageable.getSort() != null) {
                     Collection<String> existingSorts = template.queries().get("sort");
-                    List<String> sortQueries = existingSorts != null ? new ArrayList<>(existingSorts) : new ArrayList<>();
+                    List<String> sortQueries = existingSorts != null ? new ArrayList<String>(existingSorts) : new ArrayList<String>();
                     for (Sort.Order order : pageable.getSort()) {
                         sortQueries.add(order.getProperty() + "," + order.getDirection());
                     }
                     template.query("sort", sortQueries);
                 }
-
             } else {
                 delegate.encode(object, bodyType, template);
             }
