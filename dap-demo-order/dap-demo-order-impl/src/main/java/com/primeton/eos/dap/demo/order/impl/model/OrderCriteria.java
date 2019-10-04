@@ -24,17 +24,7 @@ import java.io.Serializable;
 public class OrderCriteria implements Serializable {
     private static final long serialVersionUID = 2594493326754690159L;
 
-    private String orderNo;
-
     private String userId;
-
-    public String getOrderNo() {
-        return orderNo;
-    }
-
-    public void setOrderNo(String orderNo) {
-        this.orderNo = orderNo;
-    }
 
     public String getUserId() {
         return userId;

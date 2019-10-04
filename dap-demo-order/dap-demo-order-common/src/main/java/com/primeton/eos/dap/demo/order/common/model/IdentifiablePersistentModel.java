@@ -22,7 +22,6 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Null;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -39,7 +38,6 @@ public abstract class IdentifiablePersistentModel implements Serializable, Clone
     private static final long serialVersionUID = -3308019559908832962L;
 
     @Id
-    @Null(groups = ValidationGroups.Create.class)
     @NotBlank(groups = { ValidationGroups.Update.class, ValidationGroups.Association.class })
     private String id;
 
