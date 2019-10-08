@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.stereotype.Service;
 
 import com.primeton.eos.dap.demo.user.common.model.BasePersistentModel;
 import com.primeton.eos.dap.demo.user.common.model.BasePersistentModel_;
@@ -16,6 +17,7 @@ import com.primeton.eos.dap.demo.user.common.model.BasePersistentModel_;
  *
  * @author wangwb (mailto:wangwb@primeton.com)
  */
+@Service
 public abstract class BasePersistentModelService<T extends BasePersistentModel> extends IdentifiablePersistentModelService<T> {
 
     protected Sort defaultSort = Sort.by(Order.asc(BasePersistentModel_.createdDate.getName()));

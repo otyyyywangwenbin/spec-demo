@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import com.primeton.eos.dap.demo.user.common.dao.CommonJpaRepository;
 import com.primeton.eos.dap.demo.user.common.model.IdentifiablePersistentModel;
@@ -24,6 +25,7 @@ import com.primeton.eos.dap.demo.user.common.model.IdentifiablePersistentModel;
  *
  * @author wangwb (mailto:wangwb@primeton.com)
  */
+@Service
 public abstract class IdentifiablePersistentModelService<T extends IdentifiablePersistentModel> {
 
     protected abstract CommonJpaRepository<T, String> getRepo();
