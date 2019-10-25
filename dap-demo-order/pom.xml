@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.primeton.eos</groupId>
         <artifactId>eos-dap-pom</artifactId>
-        <version>5.0.0</version>
+        <version>5.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>dap-demo-order</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -30,7 +30,7 @@
             <dependency>
                 <groupId>com.primeton.eos</groupId>
                 <artifactId>eos-dap-sdk-dependencies</artifactId>
-                <version>5.0.0</version>
+                <version>5.0.1-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
